@@ -1,0 +1,39 @@
+---
+title: "Warped Phillips"
+author: "Gavin Martinez"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{r echo = F}
+library(jasmines)
+library(tidyverse)
+```
+
+```{r}
+use_seed(7575) %>%
+  entity_circle(grain = 10000, size = 1.6) %>%
+  unfold_warp(iterations = 100) %>%
+  style_ribbon(palette = "viridis", background = "lightblue", alpha = .5)
+```
+
+Title: "Warped Phillips"
+
+Artist: Gavin Martinez
+
+Medium: Digital Art (created using the Jasmines R package)
+
+Dimensions: Variable (Digital Display)
+
+Description:
+
+"Warped Phillips" is an intriguing digital artwork created by Gavin Martinez, using the expressive power of the Jasmines R package. This thought-provoking piece showcases Martinez's innovative approach to art, where code and algorithms become the tools for artistic creation.
+
+"Warped Phillips" is centered around a circular form that undergoes a geometrical transformation. Starting as a perfect circle, it gradually warps and distorts, evolving into a Phillips screwdriver shape at the bottom. As the eye moves upward, the shape expands and evolves further into a curved square, creating a dynamic and intriguing visual narrative.
+
+Against a backdrop of a light blue background, the main circular element is bathed in the striking hue of "veridis," a vibrant collection of shades that adds a sense of energy and vitality to the piece. The contrast between the serene background and the vivid colors of the central shape creates a compelling visual tension, drawing the viewer's gaze and sparking curiosity.
+
+#### About the Code
+
+By using the function "entity_circle" I was able to make a circular image the focal point of this piece. By setting grain to 1000 I was able to make a seemingly solid figure instead of a stringy figure displayed by smaller grains. Size effects the point around the circle that the circle stops expanding while "unfold_warp" iterations affect how far out the circle goes from its original form. "style_ribbon" colors the figure with palette and the background with background and controls how transparent the folds in the figure are relative to other parts of the figure using alpha. A higher alpha level results in less transparency and a lower alpha level results in more transparency.
