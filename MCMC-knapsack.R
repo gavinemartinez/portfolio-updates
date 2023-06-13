@@ -1,9 +1,4 @@
-# Function to calculate the target distribution probability for a given state
-calculate_prob <- function(x, beta) {
-  exp(beta * sum(v * x))
-}
-# Function to implement the MCMC algorithm for the knapsack problem with the updated distribution
-MCMC_knapsack_updated <- function(values, weights, weight_limit, beta, num_iterations) {
+MCMC_knapsack_algo <- function(values, weights, weight_limit, num_iterations = 10000) {
   M <- length(values) # Number of items
   x <- rep(0, M) # Initialize binary vector for knapsack items
   max_value <- 0 # Maximum value found so far
@@ -16,13 +11,6 @@ MCMC_knapsack_updated <- function(values, weights, weight_limit, beta, num_itera
   calculate_weight <- function(x) {
     sum(weights * x)
   }
-  12
-  # Function to calculate the acceptance probability
-  acceptance <- function(x, y, beta) {
-    prob_y <- calculate_prob(y, beta)
-    prob_x <- calculate_prob(x, beta)
-    prob_y / prob_x
-  }
   # Run the MCMC algorithm
   for (iter in 1:num_iterations) {
     # Select a random item
@@ -34,6 +22,7 @@ MCMC_knapsack_updated <- function(values, weights, weight_limit, beta, num_itera
     } else {
       # Add the item to the knapsack if weight limit allows
       if (calculate_weight(x) + weights[item] <= weight_limit) {
+        10
         x[item] <- 1
       }
     }
@@ -45,13 +34,7 @@ MCMC_knapsack_updated <- function(values, weights, weight_limit, beta, num_itera
       max_weight <- curr_weight
       optimal_x <- x
     }
-    # Randomly decide whether to accept or reject the proposed state
-    y <- x
-    y[item] <- 1 - y[item] # Flip the state of the selected item
-    if (runif(1) > acceptance(x, y, beta)) {
-      x <- y # Accept the proposed state
-    }
   }
-  return(list(num_iters = num_iterations, max_value = max_value, max_weight = max_weight))
+  return(list(num_iters = num_iterations, optimal_x = optimal_x, max_value = max_value, max_weight = max))
 }
 
